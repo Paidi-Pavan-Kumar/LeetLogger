@@ -1,4 +1,4 @@
-public class Q_1539 {
+class Brute {
 
     public int findKthPositive(int[] arr, int k) {
         int missing = 0, index = 0;
@@ -22,5 +22,31 @@ public class Q_1539 {
     // The space complexity is O(1) as the algorithm only uses a constant amount of
     // extra space for variables (missing, index, and i).
 
-    
+}
+
+class optimal{
+
+    public int findKthPositive1(int[] arr, int k) {
+        int low = 0;
+        int high = arr.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int missing = arr[mid] - (mid + 1);
+            if (missing < k) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return low + k;
+    }
+
+    // Time Complexity (TC):
+    // The algorithm performs a binary search, so the time complexity is O(log n),
+    // where
+    // n is the length of the input array arr.
+
+    // Space Complexity (SC):
+    // The space complexity is O(1) as it only uses a constant amount of extra space
+    // for variables (low, high, mid, and missing).
 }
